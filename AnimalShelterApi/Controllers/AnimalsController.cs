@@ -17,9 +17,19 @@ namespace AnimalShelterApi.Controllers
 
     // GET api/animals
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<Animal>>> Get()
+    public async Task<ActionResult<IEnumerable<Animal>>> Get(int page = 1, int pageSize = 5)
     {
-      return await _db.Animals.ToListAsync();
+        var totalCount = await _db.Animals.CountAsync();
+        var totalPages = (int)Math.Ceiling((decimal)totalCount / pageSize);
+
+        var animalsPerPage = await _db.Animals
+            .Skip((page - 1) * pageSize)
+            .Take(pageSize)
+            .ToListAsync();
+
+        await Task.Yield(); 
+
+        return Ok(animalsPerPage);
     }
 
     // GET: api/Animals/{id}
