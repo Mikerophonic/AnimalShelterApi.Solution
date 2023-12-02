@@ -89,6 +89,8 @@ Start the project in development mode with a watcher using the following command
 
 Use your program of choice to make API calls. In your API calls, use the domain _http://localhost:5000_. 
 
+To use Swagger, enter http://localhost:5000/swagger/index.html in your browser.
+
 ## API Documentation
 
 ### GET /api/Animals
@@ -314,6 +316,9 @@ Example Request Body *required:
       </tr>
 </table>
 
+## Further Exploration
+
+Pagination is implemented on the GET /api/Animals endpoint. There are optional parameters 'page' and 'pageSize' which the user can input to determine which page to display and how many results per page to display. If the parameters are left blank, all results will display.
 
 ## Known Bugs
 
